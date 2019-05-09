@@ -1,0 +1,47 @@
+{
+  "name": "tide-stalker",
+  "version": "1.0.0",
+  "description": "A utility for updating files across multiple GitHub repositories.",
+  "main": "index.js",
+  "scripts": {
+    "build": "bash ./scripts/build.sh",
+    "compile": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/folterung/tide-stalker.git"
+  },
+  "author": "Kevin Warnock <kevin.warnock@capitalone.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/folterung/tide-stalker/issues"
+  },
+  "homepage": "https://github.com/folterung/tide-stalker#readme",
+  "devDependencies": {
+    "@types/jest": "24.0.12",
+    "@types/node": "12.0.0",
+    "jest": "24.8.0",
+    "ts-jest": "24.0.2",
+    "typescript": "3.4.5"
+  },
+  "dependencies": {
+    "@octokit/rest": "16.25.3",
+    "https-proxy-agent": "2.2.1"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.test.json"
+      }
+    },
+    "moduleFileExtensions": ["ts","js"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "<rootDir>/**/*.test.ts"
+    ],
+    "testEnvironment": "node"
+  }
+}
