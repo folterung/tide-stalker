@@ -6,8 +6,7 @@ export interface RepositoryUpdateFileOptions {
   author?: ReposUpdateFileParamsAuthor;
   branch?: string;
   committer?: ReposUpdateFileParamsCommitter;
-  message: string;
-
-  filePath: string;
   contentTransformer: ContentTransformer
+  filePath: string;
+  message: string;
 }

@@ -21,7 +21,7 @@ export class Repository {
     const { author, branch, committer, message, filePath } = options;
     const resp = await this.getContent(filePath);
 
-    const content = new Buffer(resp.data.content, resp.data.encoding).toString();
+    const content = Buffer.from(resp.data.content, resp.data.encoding).toString();
 
     const newContent = options.contentTransformer(content, this.metadata);
 
@@ -33,7 +33,7 @@ export class Repository {
         author,
         branch,
         committer,
-        content: new Buffer(newContent).toString('base64'),
+        content: Buffer.from(newContent).toString('base64'),
         message,
         owner: this.metadata.owner.login,
         path: filePath,

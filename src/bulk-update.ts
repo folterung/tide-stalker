@@ -28,10 +28,10 @@ export async function bulkUpdate(targetMetadataList: TargetMetadata[]): Promise<
 
     try {
       if (pendingUpdates.length === 0) {
-        console.log(`No repository data found for "${targetMetadata.org}".`);
-      } else {
-        result = await Promise.all(pendingUpdates);
+        throw new Error(`No repository data found for "${targetMetadata.org}".`);
       }
+
+      result = await Promise.all(pendingUpdates);
     } catch (err) {
       throw new Error(err);
     }

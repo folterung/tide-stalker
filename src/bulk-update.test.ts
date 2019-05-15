@@ -66,7 +66,7 @@ describe("bulkUpdate", () => {
     expect(await bulkUpdate([])).toBe(undefined);
   });
 
-  it('runs "getReposByOrg" if not "targetMetadata.repos" or "targetMetadata.repos.length === 0".', async () => {
+  it('runs "getReposByOrg" if "targetMetadata.repos" and "targetMetadata.repos.length === 0".', async () => {
     const getContentsResponse = {
       data: { content: "VHVSdExl", encoding: "base64" }
     };
@@ -123,6 +123,36 @@ describe("bulkUpdate", () => {
     await bulkUpdate(metadata);
 
     expect(githubClient.repos.get).toHaveBeenCalledTimes(2);
+  });
+
+  it('throws an error if "pendingUpdates.length === 0".', async () => {
+    const getContentsResponse = {
+      data: { content: "VHVSdExl", encoding: "base64" }
+    };
+    const listForOrgResponse = {
+      data: []
+    };
+
+    let errorThrown = false;
+
+    (githubClient as any).repos.getContents.mockResolvedValueOnce(
+      getContentsResponse
+    );
+    (githubClient as any).repos.listForOrg.mockResolvedValueOnce(
+      listForOrgResponse
+    );
+
+    try {
+      await bulkUpdate(targetMetadata);
+    } catch (err) {
+      errorThrown = true;
+      expect(err.message).toBe('Error: No repository data found for "fakeOrg".');
+    }
+
+    expect(errorThrown).toBe(true);
+    expect(githubClient.repos.listForOrg).toHaveBeenCalledWith({ org: "fakeOrg" });
+    expect(githubClient.repos.getContents).not.toHaveBeenCalled();
+    expect(githubClient.repos.updateFile).not.toHaveBeenCalled();
   });
 });
 
