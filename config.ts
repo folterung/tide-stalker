@@ -1,7 +1,9 @@
 export interface Config {
   baseURL: string;
+  apiURL: string;
 }
 
-export default <Config>{
-  baseURL: 'https://api.github.com/'
-};
+const baseURL = `https://github.cloud.capitalone.com`;
+const apiURL = `${baseURL}/api/v3`
+
+export default <Config>{ baseURL, apiURL };

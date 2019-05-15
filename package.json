@@ -6,6 +6,7 @@
   "scripts": {
     "build": "bash ./scripts/build.sh",
     "compile": "tsc",
+    "start": "ts-node example/index.ts",
     "test": "jest"
   },
   "repository": {
@@ -23,6 +24,7 @@
     "@types/node": "12.0.0",
     "jest": "24.8.0",
     "ts-jest": "24.0.2",
+    "ts-node": "8.1.0",
     "typescript": "3.4.5"
   },
   "dependencies": {
@@ -35,7 +37,10 @@
         "tsConfig": "tsconfig.test.json"
       }
     },
-    "moduleFileExtensions": ["ts","js"],
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },

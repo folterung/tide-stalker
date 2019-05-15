@@ -1,5 +1,4 @@
-/**
- * @description - Entry point for the utility.
- */
-
- // todo: add high level logic here for running the application.
+export { bulkUpdate } from './bulk-update'; 
+export * from './models';
+export { Repository } from './repository';
+export { Token } from './token';
