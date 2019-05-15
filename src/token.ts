@@ -7,7 +7,7 @@ export class Token {
     this.locations = locations;
   }
 
-  value() {
+  get value() {
     return this._value = this._value || this._firstValue();
   }
 
