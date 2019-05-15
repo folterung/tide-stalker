@@ -1,11 +1,9 @@
 export class Token {
-  public readonly key: string;
   public readonly locations: string[];
 
   private _value!: string;
 
-  constructor(key: string, ...locations: string[]) {
-    this.key = key;
+  constructor(...locations: string[]) {
     this.locations = locations;
   }
 

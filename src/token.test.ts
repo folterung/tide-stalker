@@ -2,15 +2,14 @@ import { Token } from './token';
 
 describe('Token', () => {
   it('stores the key', () => {
-    const token = new Token('fakeGithubKey', 'GITHUB_ACCESS_TOKEN');
+    const token = new Token('GITHUB_ACCESS_TOKEN');
 
-    expect(token.key).toBe('fakeGithubKey');
     expect(token.locations).toEqual(['GITHUB_ACCESS_TOKEN']);
   });
 
   describe('value', () => {
     it('returns the value of the first valid environment variable', () => {
-      const token = new Token('github-token', 'bad_access_token', 'GITHUB_ACCESS_TOKEN');
+      const token = new Token('bad_access_token', 'GITHUB_ACCESS_TOKEN');
 
       process.env.GITHUB_ACCESS_TOKEN = 'fakeGithubToken';
 
@@ -18,7 +17,7 @@ describe('Token', () => {
     });
 
     it('throws an error if no matching environment variable can be found', () => {
-      const token = new Token('github-token', 'bad_access_token', 'GITHUB_ACCESS_TOKEN');
+      const token = new Token('bad_access_token', 'GITHUB_ACCESS_TOKEN');
       let errorThrown = false;
 
       delete process.env.GITHUB_ACCESS_TOKEN;
